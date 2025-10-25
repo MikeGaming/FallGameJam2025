@@ -60,7 +60,7 @@ public class FirstPersonController : MonoBehaviour
     public float maxVelocityChange = 10f;
 
     // Internal Variables
-    private bool isWalking = false;
+    public bool isWalking = false;
 
     #region Sprint
 
@@ -99,7 +99,7 @@ public class FirstPersonController : MonoBehaviour
     public float jumpPower = 5f;
 
     // Internal Variables
-    private bool isGrounded = false;
+    public bool isGrounded = false;
 
     #endregion
 
