@@ -1,6 +1,8 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,24 +34,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            ActivateBlindingAbility(true);
-            ActivateSeethroughAbility(false);
-            ActivateDestroyAbility(false);
-        }
-        else if(Input.GetKeyDown(KeyCode.N))
-        {
-            ActivateBlindingAbility(false);
-            ActivateSeethroughAbility(true);
-            ActivateDestroyAbility(false);
-        }
-        else if(Input.GetKeyDown(KeyCode.M))
-        {
-            ActivateBlindingAbility(false);
-            ActivateSeethroughAbility(false);
-            ActivateDestroyAbility(true);
-        }
+        if (Input.GetKeyDown(KeyCode.R))
+		{
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 
         if (blindingAbilityActive)
         {

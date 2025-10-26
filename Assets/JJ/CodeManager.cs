@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CodeManager : MonoBehaviour
 {
@@ -11,12 +12,18 @@ public class CodeManager : MonoBehaviour
         public List<int> code = new List<int>();
     }
 
+    public PlayerController playerController;
     public GridController gridController;
     public float speed = 1000f;
     public List<CodeObject> codes;
+    public int maxDestroys = 1;
+    public int maxSeeThroughs = 1;
+    public int maxBlinds = 1;
+    public RectTransform usesParent;
     RectTransform gridRect;
     Canvas canvas;
     Vector2 offset;
+    Vector2 targetPos;
 
     void Start()
     {
@@ -28,6 +35,10 @@ public class CodeManager : MonoBehaviour
         offset = Vector2.down * (canvas.pixelRect.height + gridRect.sizeDelta.y);
         gridRect.anchoredPosition = offset;
         gridController.gameObject.SetActive(false);
+
+        UpdateUI("Blind", maxBlinds);
+        UpdateUI("SeeThrough", maxSeeThroughs);
+        UpdateUI("Destroy", maxDestroys);
     }
 
     void Update()
@@ -35,14 +46,20 @@ public class CodeManager : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             if (!gridController.gameObject.activeSelf)
+            {
+                Cursor.lockState = CursorLockMode.Confined;
                 gridController.gameObject.SetActive(true);
+            }
             gridRect.anchoredPosition = Vector2.MoveTowards(gridRect.anchoredPosition, Vector2.zero, Time.deltaTime * speed);
         }
         else if (gridController.gameObject.activeSelf)
         {
             gridRect.anchoredPosition = Vector2.MoveTowards(gridRect.anchoredPosition, offset, Time.deltaTime * speed);
             if (gridRect.anchoredPosition == offset)
+		    {
+			    Cursor.lockState = CursorLockMode.Locked;
                 gridController.gameObject.SetActive(false);
+		    }
         }
     }
 
@@ -52,11 +69,36 @@ public class CodeManager : MonoBehaviour
         {
             if (CompareLists(code.code, inputs))
             {
-                Debug.Log(code.name);
+                if ((code.name == "Blind" && maxBlinds-- == 0) ||
+                    (code.name == "SeeThrough" && maxSeeThroughs-- == 0) ||
+                    (code.name == "Destroy" && maxDestroys-- == 0))
+                {
+                    //Do something to notify that it's wrong
+                    break;
+                }
+                UpdateUI(code.name,
+                    code.name == "Blind" ? maxBlinds :
+                    code.name == "SeeThrough" ? maxSeeThroughs :
+                    maxDestroys);
+                playerController.ActivateBlindingAbility(code.name == "Blind");
+                playerController.ActivateSeethroughAbility(code.name == "SeeThrough");
+                playerController.ActivateDestroyAbility(code.name == "Destroy");
+                gridController.GetComponent<Image>().color *= Color.green;
+                return;
             }
         }
+        gridController.GetComponent<Image>().color *= Color.red;
     }
-    
+
+    void UpdateUI(string goName, int value)
+    {
+        TMPro.TMP_Text text = usesParent.Find(goName)?.GetComponent<TMPro.TMP_Text>();
+        if (text)
+		{
+            text.text = "Uses: " + value;
+		}
+    }
+
     bool CompareLists(List<int> one, List<int> two)
     {
         if (one.Count != two.Count) return false;
