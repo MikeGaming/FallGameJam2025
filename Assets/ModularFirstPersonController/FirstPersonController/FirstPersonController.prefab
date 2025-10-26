@@ -630,6 +630,8 @@ GameObject:
   - component: {fileID: 3880574334081243020}
   - component: {fileID: 4532014419206629832}
   - component: {fileID: 563182262905765007}
+  - component: {fileID: 621786056380665517}
+  - component: {fileID: 2338950446144365433}
   m_Layer: 0
   m_Name: FirstPersonController
   m_TagString: Player
@@ -834,6 +836,8 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: b92e58b28169c824aaaea5d2c9df4cd1, type: 3}
   loadSound: {fileID: 8300000, guid: 56f595e4bfe928e4681148e32b2609a9, type: 3}
   fireSound: {fileID: 8300000, guid: 817b281bc2aee044d86dbb1e18233620, type: 3}
+  laserVolume: {fileID: 0}
+  seethroughVolume: {fileID: 0}
   destroyHoldTime: 0
   requiredHoldTime: 1
   maxReflections: 6
@@ -1032,6 +1036,40 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &621786056380665517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864850019384750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: 256cd01df68f72a4b85bd46699eaa0da, type: 2}
+--- !u!114 &2338950446144365433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864850019384750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 0.195
+  sharedProfile: {fileID: 11400000, guid: 2c54561a79ac05d45bba09c025043b13, type: 2}
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,7 +1355,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 0
+  m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!81 &4459864851310106427
@@ -1351,11 +1389,11 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
-  m_Dithering: 0
+  m_Dithering: 1
   m_ClearDepth: 1
   m_AllowXRRendering: 1
   m_AllowHDROutput: 1

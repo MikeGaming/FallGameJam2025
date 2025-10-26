@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject camBlocker;
     [SerializeField] Image stareBar;
     [SerializeField] AudioClip walkSound, jumpSound, loadSound, fireSound;
+    [SerializeField] Volume laserVolume, seethroughVolume;
 
     AudioSource source;
     AudioSource sourceQuiet;
@@ -212,6 +213,12 @@ public class PlayerController : MonoBehaviour
     {
         blindingAbilityActive = state;
         UpdateMoveSpeed(state ? defaultMoveSpeed * 4 : defaultMoveSpeed);
+        if(state)
+        {
+            laserVolume.weight = 0f;
+            seethroughVolume.weight = 0f;
+        }
+
     }
 
     public void ActivateSeethroughAbility(bool state)
@@ -220,6 +227,8 @@ public class PlayerController : MonoBehaviour
         if (state)
         {
             playerCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Environment"));
+            laserVolume.weight = 0f;
+            seethroughVolume.weight = 1f;
         }
         else
         {
@@ -230,6 +239,12 @@ public class PlayerController : MonoBehaviour
     public void ActivateDestroyAbility(bool state)
     {
         destroyAbilityActive = state;
+
+        if(state)
+        {
+            laserVolume.weight = 1f;
+            seethroughVolume.weight = 0f;
+        }
 
         // Reset any in-progress destruction when toggling off
         if (!state)
