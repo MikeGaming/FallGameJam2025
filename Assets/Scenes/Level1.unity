@@ -8781,6 +8781,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2761446149814010467, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: maxBlinds
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761446149814010467, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: maxDestroys
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761446149814010467, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: maxSeeThroughs
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8826,7 +8838,8 @@ PrefabInstance:
       value: FirstPersonController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 353370913356494451, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}

@@ -42,6 +42,15 @@ public class UILineRenderer : MonoBehaviour
         lineObjects.Clear();
         enabled = false;
     }
+
+    public void Stop()
+    {
+        if (lineObjects.Count > 0) {
+            Destroy(lineObjects[lineObjects.Count - 1]);
+            lineObjects.RemoveAt(lineObjects.Count - 1);
+        }
+        enabled = false;
+	}
     
     void RenderLine(RectTransform rectTransform, Vector2 targetPosition)
 	{
