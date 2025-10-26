@@ -7,9 +7,7 @@ public class PlayerController : MonoBehaviour
     FirstPersonController fpc;
     [SerializeField] private float defaultMoveSpeed = 5f;
     [SerializeField] Camera playerCamera;
-
-    private Material camMat;
-    private FullScreenPassRendererFeature fullScreenPass;
+    [SerializeField] GameObject camBlocker;
 
     bool blindingAbilityActive = false;
     bool destroyAbilityActive = false;
@@ -23,25 +21,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        // Fix: Use rendererDataList to get the ScriptableRendererData
-        UniversalRenderPipelineAsset urpAsset = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
-        ScriptableRendererData rendererData = null;
-        if (urpAsset != null && urpAsset.rendererDataList.Length > 0)
-        {
-            rendererData = urpAsset.rendererDataList[0];
-        }
-        if (rendererData != null)
-        {
-            fullScreenPass = rendererData.rendererFeatures.Find(feature => feature is FullScreenPassRendererFeature) as FullScreenPassRendererFeature;
-        }
-        if (fullScreenPass != null)
-        {
-            camMat = fullScreenPass.passMaterial;
-        }
-        else
-        {
-            Debug.LogError("FullScreenPassRendererFeature not found in the renderer features.");
-        }
         fpc = GetComponent<FirstPersonController>();
         if (fpc != null)
         {
@@ -77,12 +56,12 @@ public class PlayerController : MonoBehaviour
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetKey(KeyCode.Space))
             {
                 UpdateMoveSpeed(defaultMoveSpeed * 4);
-                if (camMat != null) camMat.SetFloat("_Blind", 1);
+                if (camBlocker != null) camBlocker.SetActive(true);
             }
             else
             {
                 UpdateMoveSpeed(defaultMoveSpeed);
-                if (camMat != null) camMat.SetFloat("_Blind", 0);
+                if (camBlocker != null) camBlocker.SetActive(false);
             }
         }
 
@@ -206,7 +185,7 @@ public class PlayerController : MonoBehaviour
     {
         blindingAbilityActive = state;
         UpdateMoveSpeed(state ? defaultMoveSpeed * 4 : defaultMoveSpeed);
-        if (camMat != null) camMat.SetFloat("_Blind", 0);
+        if (camBlocker != null) camBlocker.SetActive(true);
     }
 
     public void ActivateSeethroughAbility(bool state)
@@ -252,6 +231,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if (camMat != null) camMat.SetFloat("_Blind", 0);
+        if (camBlocker != null) camBlocker.SetActive(false);
     }
 }
