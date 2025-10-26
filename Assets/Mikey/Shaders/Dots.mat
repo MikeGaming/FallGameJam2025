@@ -11,17 +11,18 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: ac186f18e8db5e542a4c1864088b694d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _ALPHAPREMULTIPLY_ON
+  m_ValidKeywords:
   - _SURFACE_TYPE_TRANSPARENT
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses:
   - MOTIONVECTORS
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -42,26 +43,26 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Blend: 2
-    - _BlendModePreserveSpecular: 1
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 0
     - _CastShadows: 1
-    - _Cull: 2
+    - _Cull: 0
     - _DotsNoiseScale: 30
     - _DotsSize: 1
-    - _DstBlend: 1
-    - _MaskPower: 2.06
+    - _DstBlend: 10
+    - _MaskPower: 10
     - _NoiseScale: 30
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _Surface: 1
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _DotsColour: {r: 0.10234957, g: 0.5211884, b: 0.8679245, a: 0}
+    - _DotsColour: {r: 0.377314, g: 0.5754717, b: 0.41965446, a: 1}
     - _DotsTiling: {r: 30, g: 30, b: 0, a: 0}
     - _NoiseSpeed: {r: 0, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
