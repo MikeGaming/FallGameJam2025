@@ -9,6 +9,7 @@ public class MainMenuManager : MonoBehaviour
     public List<CodeObject> codes;
     public RectTransform lacreatura;
     public ParticleSystem confetti;
+    public AudioSource yipee;
     public AudioSource source;
 
     void Start()
@@ -67,6 +68,7 @@ public class MainMenuManager : MonoBehaviour
     {
         jumpscaring = true;
         confetti.Play();
+        yipee.Play();
         while (lacreatura.localScale != Vector3.one)
         {
             lacreatura.localScale = Vector3.MoveTowards(lacreatura.localScale, Vector3.one, Time.deltaTime * 5f);
