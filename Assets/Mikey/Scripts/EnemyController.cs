@@ -45,6 +45,9 @@ public class EnemyController : MonoBehaviour
                 // Slower, calmer wandering for mirror enemies
                 navMeshAgent.speed = 10f;               // slower movement
                 navMeshAgent.angularSpeed = 120f;        // reasonable turning speed
+                // Prevent the NavMeshAgent from rotating the transform so we can
+                // control facing independently (always face the player).
+                navMeshAgent.updateRotation = false;
                 InvokeRepeating("MirrorEnemyLoop", 0f, 0.6f); // update less frequently
                 break;
         }
@@ -52,6 +55,27 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        // If this is a mirror enemy, always face the player (horizontal only),
+        // but keep moving using the NavMeshAgent (agent rotation is disabled).
+        if (enemyType == EnemyType.Mirror && player != null && navMeshAgent != null)
+        {
+            Vector3 directionToPlayer = player.position - transform.position;
+            directionToPlayer.y = 0f; // Keep only the horizontal direction
+            if (directionToPlayer != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+                // Rotate towards the target at navMeshAgent.angularSpeed degrees per second.
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, navMeshAgent.angularSpeed * Time.deltaTime);
+            }
+
+            // Keep the mirror object oriented to mirror the player's camera continuously.
+            if (mirrorObject != null && playerCam != null)
+            {
+                Vector3 desiredForward = -playerCam.forward;
+                Quaternion mirrorRotation = Quaternion.LookRotation(desiredForward, Vector3.up);
+                mirrorObject.transform.rotation = mirrorRotation;
+            }
+        }
     }
 
     private void PushEnemyLoop()
@@ -70,35 +94,6 @@ public class EnemyController : MonoBehaviour
 
     private void MirrorEnemyLoop()
     {
-        // Make the enemy face the player (horizontal only)
-        if (player != null)
-        {
-            Vector3 directionToPlayer = player.position - transform.position;
-            directionToPlayer.y = 0f; // Keep only the horizontal direction
-            if (directionToPlayer != Vector3.zero)
-            {
-                Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
-                transform.rotation = lookRotation;
-            }
-        }
-
-        // Make the mirror face the opposite direction the player is looking at,
-        // using the camera's forward vector. This avoids Euler wrapping / 0..360 ambiguity
-        // and correctly mirrors pitch (up/down) and yaw (left/right).
-        if (mirrorObject != null && playerCam != null)
-        {
-            // Desired forward for the mirror is the opposite of the camera's forward.
-            Vector3 desiredForward = -playerCam.forward;
-
-            // If you want the mirror to remain upright in world space, provide Vector3.up as the up vector.
-            Quaternion mirrorRotation = Quaternion.LookRotation(desiredForward, Vector3.up);
-
-            // If the mirror model is oriented such that it's facing the wrong way by default,
-            // you can apply a Y offset, e.g. Quaternion.Euler(0, 180f, 0), like:
-            // mirrorObject.transform.rotation = mirrorRotation * Quaternion.Euler(0, 180f, 0);
-            mirrorObject.transform.rotation = mirrorRotation;
-        }
-
         if (navMeshAgent == null) return;
 
         // Occasionally decide to approach the player (gentle, rate-limited and probabilistic)
