@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 211658447347708312, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
+      propertyPath: m_VersionIndex
+      value: 836
+      objectReference: {fileID: 0}
+    - target: {fileID: 2298441958793265684, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
+      propertyPath: m_VersionIndex
+      value: 836
+      objectReference: {fileID: 0}
     - target: {fileID: 4583671026623850093, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -48,9 +56,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5988905705398786809, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
+      propertyPath: m_VersionIndex
+      value: 836
+      objectReference: {fileID: 0}
     - target: {fileID: 6779066765730835591, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
       propertyPath: m_Name
       value: EnemyDodge
+      objectReference: {fileID: 0}
+    - target: {fileID: 6912662655782058155, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
+      propertyPath: m_VersionIndex
+      value: 836
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618449578891193535, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
+      propertyPath: m_VersionIndex
+      value: 833
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

@@ -18,24 +18,34 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent navMeshAgent;
     [SerializeField] GameObject mirrorObject;
 
+    // Mirror movement tuning
+    [SerializeField] float mirrorWanderRadius = 2f;
+    [SerializeField, Range(0f, 1f)] float mirrorApproachChance = 0.2f; // chance per check to approach player
+    [SerializeField] float mirrorApproachRadius = 10f;               // only consider approaching if player within this distance
+    [SerializeField] float mirrorApproachCooldown = 3f;              // minimum seconds between approach attempts
+    float lastMirrorApproachTime;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerCam = Camera.main.transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        lastMirrorApproachTime = -mirrorApproachCooldown;
+
         switch (enemyType)
         {
             case EnemyType.Dodge:
                 navMeshAgent.speed = 100f;
-                navMeshAgent.acceleration = 100f;
-                navMeshAgent.angularSpeed = 500f;
-                InvokeRepeating("DodgeEnemyLoop", 0f, 0.5f);
+                InvokeRepeating("DodgeEnemyLoop", 0f, 1f);
                 break;
             case EnemyType.Push:
                 InvokeRepeating("PushEnemyLoop", 0f, 0.5f);
                 break;
             case EnemyType.Mirror:
-                InvokeRepeating("MirrorEnemyLoop", 0f, 0.1f);
+                // Slower, calmer wandering for mirror enemies
+                navMeshAgent.speed = 10f;               // slower movement
+                navMeshAgent.angularSpeed = 120f;        // reasonable turning speed
+                InvokeRepeating("MirrorEnemyLoop", 0f, 0.6f); // update less frequently
                 break;
         }
     }
@@ -87,6 +97,41 @@ public class EnemyController : MonoBehaviour
             // you can apply a Y offset, e.g. Quaternion.Euler(0, 180f, 0), like:
             // mirrorObject.transform.rotation = mirrorRotation * Quaternion.Euler(0, 180f, 0);
             mirrorObject.transform.rotation = mirrorRotation;
+        }
+
+        if (navMeshAgent == null) return;
+
+        // Occasionally decide to approach the player (gentle, rate-limited and probabilistic)
+        bool didApproach = false;
+        if (player != null)
+        {
+            float distanceToPlayer = Vector3.Distance(player.position, transform.position);
+            if (distanceToPlayer <= mirrorApproachRadius && Time.time - lastMirrorApproachTime >= mirrorApproachCooldown)
+            {
+                if (Random.value <= mirrorApproachChance)
+                {
+                    // Move toward the player (calmly)
+                    navMeshAgent.SetDestination(player.position);
+                    lastMirrorApproachTime = Time.time;
+                    didApproach = true;
+                }
+            }
+        }
+
+        if (didApproach) return;
+
+        // Gentle random wandering: sample a nearby navmesh point occasionally and move there.
+        // Only pick a new target if there is no path or we're nearly at the current target.
+        if (!navMeshAgent.hasPath || navMeshAgent.remainingDistance < 0.5f)
+        {
+            Vector3 randomDirection = Random.insideUnitSphere * mirrorWanderRadius;
+            randomDirection += transform.position;
+            NavMeshHit hit;
+            // sample with a small max distance so target stays close
+            if (NavMesh.SamplePosition(randomDirection, out hit, mirrorWanderRadius, NavMesh.AllAreas))
+            {
+                navMeshAgent.SetDestination(hit.position);
+            }
         }
     }
 
