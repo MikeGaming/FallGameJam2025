@@ -836,8 +836,8 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: b92e58b28169c824aaaea5d2c9df4cd1, type: 3}
   loadSound: {fileID: 8300000, guid: 56f595e4bfe928e4681148e32b2609a9, type: 3}
   fireSound: {fileID: 8300000, guid: 817b281bc2aee044d86dbb1e18233620, type: 3}
-  laserVolume: {fileID: 0}
-  seethroughVolume: {fileID: 0}
+  laserVolume: {fileID: 621786056380665517}
+  seethroughVolume: {fileID: 2338950446144365433}
   destroyHoldTime: 0
   requiredHoldTime: 1
   maxReflections: 6
