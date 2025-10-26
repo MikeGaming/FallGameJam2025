@@ -83,6 +83,7 @@ public class CodeManager : MonoBehaviour
                 playerController.ActivateBlindingAbility(code.name == "Blind");
                 playerController.ActivateSeethroughAbility(code.name == "SeeThrough");
                 playerController.ActivateDestroyAbility(code.name == "Destroy");
+                playerController.source.PlayOneShot(playerController.loadSound);
                 gridController.GetComponent<Image>().color *= Color.green;
                 return;
             }

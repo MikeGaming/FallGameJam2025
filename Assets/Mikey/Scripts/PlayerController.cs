@@ -13,10 +13,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Camera playerCamera;
     [SerializeField] GameObject camBlocker;
     [SerializeField] Image stareBar;
-    [SerializeField] AudioClip walkSound, jumpSound, loadSound, fireSound;
+    public AudioClip walkSound, jumpSound, loadSound, fireSound;
     [SerializeField] Volume laserVolume, seethroughVolume;
 
-    AudioSource source;
+    [HideInInspector] public AudioSource source;
     AudioSource sourceQuiet;
 
     bool blindingAbilityActive = false;

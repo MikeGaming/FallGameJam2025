@@ -791,11 +791,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db8533e41ef8b3f40bdb6e00234d67f0, type: 3}
---- !u!1 &294833642 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2113734422936820996, guid: 6fbb72027cc605541a19b8b849e0af40, type: 3}
-  m_PrefabInstance: {fileID: 219232083864224220}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &323742524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1584,18 +1579,6 @@ PrefabInstance:
     - target: {fileID: 1653148613459318068, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2761446149814010467, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
-      propertyPath: maxBlinds
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2761446149814010467, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
-      propertyPath: maxDestroys
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2761446149814010467, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
-      propertyPath: maxSeeThroughs
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4950,9 +4933,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goal
       objectReference: {fileID: 0}
+    - target: {fileID: 2113734422936820996, guid: 6fbb72027cc605541a19b8b849e0af40, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445700773373129819, guid: 6fbb72027cc605541a19b8b849e0af40, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7027414752689524721, guid: 6fbb72027cc605541a19b8b849e0af40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.5
+      value: 12.54
       objectReference: {fileID: 0}
     - target: {fileID: 7027414752689524721, guid: 6fbb72027cc605541a19b8b849e0af40, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5047,10 +5038,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6027258291289817560, guid: f60fb30a8787cc247be2527c7e8cb205, type: 3}
-      propertyPath: platformToSpawn
-      value: 
-      objectReference: {fileID: 294833642}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
