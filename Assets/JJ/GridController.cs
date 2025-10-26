@@ -31,6 +31,8 @@ public class GridController : MonoBehaviour
         lineRenderer?.Clear();
         inputs = null;
         reset.Invoke();
+        curCooldown = 0f;
+        GetComponent<Image>().color = defaultCol;
     }
 
 	// Update is called once per frame

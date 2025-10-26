@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip walkSound, jumpSound, loadSound, fireSound;
 
     AudioSource source;
+    AudioSource sourceQuiet;
 
     bool blindingAbilityActive = false;
     bool destroyAbilityActive = false;
@@ -35,7 +36,8 @@ public class PlayerController : MonoBehaviour
             fpc.walkSpeed = defaultMoveSpeed;
         }
 
-        source = GetComponent<AudioSource>();
+        source = GetComponents<AudioSource>()[0];
+        sourceQuiet = GetComponents<AudioSource>()[1];
     }
 
     float t, t1;
@@ -83,7 +85,7 @@ public class PlayerController : MonoBehaviour
                     // New target -> reset timer and set as current
                     currentDestroyTarget = hitObj;
                     destroyHoldTime = Time.deltaTime;
-                    source.PlayOneShot(loadSound);
+                    sourceQuiet.PlayOneShot(loadSound);
                 }
 
                 if (destroyHoldTime >= requiredHoldTime)

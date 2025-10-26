@@ -15,6 +15,7 @@ public class CodeManager : MonoBehaviour
     public int maxSeeThroughs = 1;
     public int maxBlinds = 1;
     public RectTransform usesParent;
+    public AudioSource source;
     RectTransform gridRect;
     Canvas canvas;
     Vector2 offset = Vector2.zero;
@@ -86,6 +87,7 @@ public class CodeManager : MonoBehaviour
                 return;
             }
         }
+        source.Play();
         gridController.GetComponent<Image>().color *= Color.red;
     }
 

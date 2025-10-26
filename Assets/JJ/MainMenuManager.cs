@@ -9,6 +9,7 @@ public class MainMenuManager : MonoBehaviour
     public List<CodeObject> codes;
     public RectTransform lacreatura;
     public ParticleSystem confetti;
+    public AudioSource source;
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class MainMenuManager : MonoBehaviour
                 return;
             }
         }
+        source.Play();
         gridController.GetComponent<Image>().color *= Color.red;
     }
 
