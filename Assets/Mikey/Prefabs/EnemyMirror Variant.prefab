@@ -53,11 +53,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 211658447347708312, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
       propertyPath: m_VersionIndex
-      value: 848
+      value: 905
       objectReference: {fileID: 0}
     - target: {fileID: 2298441958793265684, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
       propertyPath: m_VersionIndex
-      value: 848
+      value: 905
       objectReference: {fileID: 0}
     - target: {fileID: 4583671026623850093, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
       propertyPath: m_LocalPosition.x
@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5988905705398786809, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
       propertyPath: m_VersionIndex
-      value: 848
+      value: 905
       objectReference: {fileID: 0}
     - target: {fileID: 6779066765730835591, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
       propertyPath: m_Name
@@ -109,11 +109,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6912662655782058155, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
       propertyPath: m_VersionIndex
-      value: 848
+      value: 905
       objectReference: {fileID: 0}
     - target: {fileID: 7618449578891193535, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
       propertyPath: m_VersionIndex
-      value: 845
+      value: 902
       objectReference: {fileID: 0}
     - target: {fileID: 8942643390826549861, guid: 329ed78ac415f134ebf25630ce0fc667, type: 3}
       propertyPath: enemyType
