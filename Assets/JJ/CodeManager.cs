@@ -14,6 +14,8 @@ public class CodeManager : MonoBehaviour
 
     public PlayerController playerController;
     public GridController gridController;
+    public RectTransform stare;
+    public RectTransform stareOffset;
     public float speed = 1000f;
     public List<CodeObject> codes;
     public int maxDestroys = 1;
@@ -22,8 +24,8 @@ public class CodeManager : MonoBehaviour
     public RectTransform usesParent;
     RectTransform gridRect;
     Canvas canvas;
-    Vector2 offset;
-    Vector2 targetPos;
+    Vector2 offset = Vector2.zero;
+    Vector2 startPos;
 
     void Start()
     {
@@ -32,7 +34,9 @@ public class CodeManager : MonoBehaviour
         canvas = GetComponent<Canvas>();
         gridRect = gridController.GetComponent<RectTransform>();
 
-        offset = Vector2.down * (canvas.pixelRect.height + gridRect.sizeDelta.y);
+        startPos = gridRect.anchoredPosition;
+        offset.y = -(canvas.pixelRect.height + gridRect.sizeDelta.y);
+        offset.x = startPos.x;
         gridRect.anchoredPosition = offset;
         gridController.gameObject.SetActive(false);
 
@@ -50,11 +54,13 @@ public class CodeManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
                 gridController.gameObject.SetActive(true);
             }
-            gridRect.anchoredPosition = Vector2.MoveTowards(gridRect.anchoredPosition, Vector2.zero, Time.deltaTime * speed);
+            gridRect.anchoredPosition = Vector2.MoveTowards(gridRect.anchoredPosition, startPos, Time.deltaTime * speed);
+            stare.anchoredPosition = Vector2.MoveTowards(stare.anchoredPosition, stareOffset.anchoredPosition, Time.deltaTime * speed);
         }
         else if (gridController.gameObject.activeSelf)
         {
             gridRect.anchoredPosition = Vector2.MoveTowards(gridRect.anchoredPosition, offset, Time.deltaTime * speed);
+            stare.anchoredPosition = Vector2.MoveTowards(stare.anchoredPosition, Vector2.zero, Time.deltaTime * speed);
             if (gridRect.anchoredPosition == offset)
 		    {
 			    Cursor.lockState = CursorLockMode.Locked;

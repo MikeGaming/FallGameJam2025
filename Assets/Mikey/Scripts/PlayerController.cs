@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float defaultMoveSpeed = 5f;
     [SerializeField] Camera playerCamera;
     [SerializeField] GameObject camBlocker;
+    [SerializeField] Image stareBar;
 
     bool blindingAbilityActive = false;
     bool destroyAbilityActive = false;
@@ -92,6 +94,7 @@ public class PlayerController : MonoBehaviour
                 currentDestroyTarget = null;
                 destroyHoldTime = 0f;
             }
+            stareBar.fillAmount = destroyHoldTime / requiredHoldTime;
         }
     }
 
@@ -197,6 +200,7 @@ public class PlayerController : MonoBehaviour
         {
             currentDestroyTarget = null;
             destroyHoldTime = 0f;
+            stareBar.fillAmount = 0f;
         }
     }
 
