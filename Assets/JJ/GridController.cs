@@ -10,16 +10,20 @@ public class GridController : MonoBehaviour
 {
     UILineRenderer lineRenderer;
     List<int> inputs = null;
+    [HideInInspector]
     public Vector2 position = Vector2.zero;
+    public float cooldown = 1f;
     public UnityEvent<List<int>> result = new UnityEvent<List<int>>();
     public UnityEvent reset = new UnityEvent();
-    public float cooldown = 1f;
     float curCooldown = 0f;
     Color defaultCol;
+    RectTransform rectTransform;
+
     void Start()
     {
         defaultCol = GetComponent<Image>().color;
         lineRenderer = GetComponent<UILineRenderer>();
+        rectTransform = GetComponent<RectTransform>();
     }
 
 	void OnDisable()
@@ -43,7 +47,7 @@ public class GridController : MonoBehaviour
 			}
 		}
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                GetComponent<RectTransform>(), Mouse.current.position.value, Camera.current, out position);
+                rectTransform, Mouse.current.position.value, Camera.current, out position);
         if (Input.GetMouseButtonDown(0) && curCooldown <= 0f)
         {
             inputs = new List<int>();

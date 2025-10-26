@@ -5,13 +5,6 @@ using UnityEngine.UI;
 
 public class CodeManager : MonoBehaviour
 {
-    [Serializable]
-    public class CodeObject
-    {
-        public String name = "lmao";
-        public List<int> code = new List<int>();
-    }
-
     public PlayerController playerController;
     public GridController gridController;
     public RectTransform stare;
@@ -73,7 +66,7 @@ public class CodeManager : MonoBehaviour
     {
         foreach (var code in codes)
         {
-            if (CompareLists(code.code, inputs))
+            if (code.CompareLists(code.code, inputs))
             {
                 if ((code.name == "Blind" && maxBlinds-- == 0) ||
                     (code.name == "SeeThrough" && maxSeeThroughs-- == 0) ||
@@ -104,29 +97,37 @@ public class CodeManager : MonoBehaviour
             text.text = "Uses: " + value;
 		}
     }
-
-    bool CompareLists(List<int> one, List<int> two)
-    {
-        if (one.Count != two.Count) return false;
-
-        bool valid = true;
-        for (int i = 0; i < one.Count; ++i) {
-            if (one[i] != two[i]) {
-                valid = false;
-                break;
-            }
-        }
-
-        if (valid) return true;
-
-        valid = true;
-        for (int i = 0; i < one.Count; ++i) {
-            if (one[i] != two[one.Count - i - 1]) {
-                valid = false;
-                break;
-            }
-        }
-
-        return valid;
-	}
 }
+
+
+    [Serializable]
+    public class CodeObject
+    {
+        public String name = "lmao";
+        public List<int> code = new List<int>();
+        
+        public bool CompareLists(List<int> one, List<int> two)
+        {
+            if (one.Count != two.Count) return false;
+
+            bool valid = true;
+            for (int i = 0; i < one.Count; ++i) {
+                if (one[i] != two[i]) {
+                    valid = false;
+                    break;
+                }
+            }
+
+            if (valid) return true;
+
+            valid = true;
+            for (int i = 0; i < one.Count; ++i) {
+                if (one[i] != two[one.Count - i - 1]) {
+                    valid = false;
+                        break;
+                }
+            }
+
+            return valid;
+	    }
+    }
