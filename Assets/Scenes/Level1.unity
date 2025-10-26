@@ -4924,6 +4924,7 @@ MonoBehaviour:
   levels:
   - Level1
   - Level2
+  - Level5
   loopLevels: 0
   finalSceneName: Credits
   onLevelLoaded:
