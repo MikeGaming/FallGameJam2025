@@ -173,7 +173,6 @@ public class PlayerController : MonoBehaviour
     {
         blindingAbilityActive = state;
         UpdateMoveSpeed(state ? defaultMoveSpeed * 4 : defaultMoveSpeed);
-        camBlocker?.SetActive(state);
     }
 
     public void ActivateSeethroughAbility(bool state)
