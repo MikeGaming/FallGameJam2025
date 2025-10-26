@@ -7,21 +7,20 @@ public class UILineRenderer : MonoBehaviour
 {
     public GameObject lineObj;
     List<GameObject> lineObjects = new List<GameObject>();
-
+    GridController controller;
+    
     void Start()
     {
+        controller = GetComponentInParent<GridController>();
         enabled = false;
     }
 
     Vector2 prevVal = Vector2.zero;
     void Update()
 	{
-        Vector2 value;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                GetComponent<RectTransform>(), Mouse.current.position.value, Camera.current, out value);
-        if (value != prevVal) {
-            RenderLine(lineObjects[lineObjects.Count - 1].GetComponent<RectTransform>(), value);
-			prevVal = value;
+        if (controller.position != prevVal) {
+            RenderLine(lineObjects[lineObjects.Count - 1].GetComponent<RectTransform>(), controller.position);
+			prevVal = controller.position;
 		}
     }
 
@@ -34,10 +33,7 @@ public class UILineRenderer : MonoBehaviour
         RectTransform rectTransform = Instantiate(lineObj, transform).GetComponent<RectTransform>();
         lineObjects.Add(rectTransform.gameObject);
         rectTransform.anchoredPosition = position;
-        Vector2 value;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            GetComponent<RectTransform>(), Mouse.current.position.value, Camera.current, out value);
-        RenderLine(rectTransform, value);
+        RenderLine(rectTransform, controller.position);
     }
 
     public void Clear()
