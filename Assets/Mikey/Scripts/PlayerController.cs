@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Camera playerCamera;
     [SerializeField] GameObject camBlocker;
     [SerializeField] Image stareBar;
+    [SerializeField] AudioClip walkSound, jumpSound, loadSound, fireSound;
+
+    AudioSource source;
 
     bool blindingAbilityActive = false;
     bool destroyAbilityActive = false;
@@ -30,9 +34,12 @@ public class PlayerController : MonoBehaviour
         {
             fpc.walkSpeed = defaultMoveSpeed;
         }
+
+        source = GetComponent<AudioSource>();
     }
 
-    float t;
+    float t, t1;
+    bool jumped;
 
     private void Update()
     {
@@ -76,16 +83,21 @@ public class PlayerController : MonoBehaviour
                     // New target -> reset timer and set as current
                     currentDestroyTarget = hitObj;
                     destroyHoldTime = Time.deltaTime;
+                    source.PlayOneShot(loadSound);
                 }
 
                 if (destroyHoldTime >= requiredHoldTime)
                 {
                     if (hitObj.CompareTag("Enemy"))
                         Destroy(hitObj.transform.parent.parent.gameObject);
-                    else
-                        Destroy(hitObj);
+                    else if (hitObj.CompareTag("Player"))
+                    {
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    }
+                    else Destroy(hitObj);
                     currentDestroyTarget = null;
                     destroyHoldTime = 0f;
+                    source.PlayOneShot(fireSound);
                 }
             }
             else
@@ -95,6 +107,28 @@ public class PlayerController : MonoBehaviour
                 destroyHoldTime = 0f;
             }
             stareBar.fillAmount = destroyHoldTime / requiredHoldTime;
+        }
+
+        if (source != null && walkSound != null && jumpSound != null)
+        {
+            if (fpc.isWalking && fpc.isGrounded)
+            {
+                t += Time.deltaTime;
+                if (t >= 0.25f)
+                {
+                    t = 0f;
+                    source.PlayOneShot(walkSound);
+                }
+            }
+            if (!fpc.isGrounded && !jumped)
+            {
+                source.PlayOneShot(jumpSound);
+                jumped = true;
+            }
+            if (fpc.isGrounded)
+            {
+                jumped = false;
+            }
         }
     }
 
