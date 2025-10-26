@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
@@ -46,7 +47,7 @@ public class MainMenuManager : MonoBehaviour
 
     void StartGame()
     {
-        Debug.Log("Start");
+        LevelManager.Instance.LevelComplete();
     }
 
     void LeaveGame()

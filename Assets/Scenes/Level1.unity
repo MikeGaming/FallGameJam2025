@@ -4892,59 +4892,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2807544628564897584, guid: db8533e41ef8b3f40bdb6e00234d67f0, type: 3}
   m_PrefabInstance: {fileID: 1935186175}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2125186125
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2125186127}
-  - component: {fileID: 2125186126}
-  m_Layer: 0
-  m_Name: LevelManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2125186126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125186125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deb19be6d5fe8a0408a3d6587d100393, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levels:
-  - Level1
-  - Level2
-  - Level5
-  loopLevels: 0
-  finalSceneName: Credits
-  onLevelLoaded:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!4 &2125186127
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125186125}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2136007202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5130,4 +5077,3 @@ SceneRoots:
   - {fileID: 988894682}
   - {fileID: 1327734666}
   - {fileID: 715807521}
-  - {fileID: 2125186127}
