@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -29,8 +30,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int maxReflections = 4;
     [SerializeField] private float rayDistance = 50f;
 
+    int tint_id;
     private void Start()
     {
+        tint_id = Shader.PropertyToID("_tint");
+
         fpc = GetComponent<FirstPersonController>();
         if (fpc != null)
         {
@@ -84,7 +88,9 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     // New target -> reset timer and set as current
+                    SetMat(Color.white);
                     currentDestroyTarget = hitObj;
+                    SetMat(Color.grey);
                     destroyHoldTime = Time.deltaTime;
                     sourceQuiet.PlayOneShot(loadSound);
                 }
@@ -103,8 +109,9 @@ public class PlayerController : MonoBehaviour
                     source.PlayOneShot(fireSound);
                 }
             }
-            else
+            else if (currentDestroyTarget)
             {
+                SetMat(Color.white);
                 // Nothing hit (or only mirrors but exceeded reflections) -> reset hold state
                 currentDestroyTarget = null;
                 destroyHoldTime = 0f;
@@ -247,8 +254,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // Reset any in-progress destruction when toggling off
-        if (!state)
+        else
         {
+            SetMat(Color.white);
             currentDestroyTarget = null;
             destroyHoldTime = 0f;
             stareBar.fillAmount = 0f;
@@ -274,5 +282,16 @@ public class PlayerController : MonoBehaviour
     private void OnApplicationQuit()
     {
         if (camBlocker != null) camBlocker.SetActive(false);
+    }
+
+    void SetMat(Color col)
+    {
+        if (currentDestroyTarget == null) return;
+
+        MeshRenderer[] meshes = currentDestroyTarget.GetComponentsInChildren<MeshRenderer>();
+        if (meshes.Length > 0)
+            foreach (MeshRenderer mesh in meshes)
+                foreach (var mat in mesh.materials)
+                    mat.SetColor(tint_id, col);
     }
 }

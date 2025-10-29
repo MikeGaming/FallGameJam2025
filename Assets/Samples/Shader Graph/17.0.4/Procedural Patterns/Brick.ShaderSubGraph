@@ -128,6 +128,12 @@
         },
         {
             "m_Id": "0750c061179ce78bae2dedf39e277020"
+        },
+        {
+            "m_Id": "6f345cd61e3b47bea141454e0d20a9a8"
+        },
+        {
+            "m_Id": "6b3174aca6a14a1aa1d80d093c7502bf"
         }
     ],
     "m_GroupDatas": [
@@ -413,6 +419,34 @@
                     "m_Id": "a0e5e6b4c04ca884acf5b4ef03797946"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "6b3174aca6a14a1aa1d80d093c7502bf"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "7ef98bf5d80d3e80920e877b157d97a2"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "6f345cd61e3b47bea141454e0d20a9a8"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "6b3174aca6a14a1aa1d80d093c7502bf"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -1211,8 +1245,8 @@
     "m_ObjectId": "229e5bebca5a458c8efc65a3a3f1b531",
     "m_Title": "Determine edge distance",
     "m_Position": {
-        "x": -1361.0001220703125,
-        "y": 822.0000610351563
+        "x": -1361.5999755859375,
+        "y": 826.4000854492188
     }
 }
 
@@ -1656,10 +1690,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2403.6962890625,
-            "y": 551.7189331054688,
-            "width": 91.0,
-            "height": 77.0
+            "x": -2454.400390625,
+            "y": 608.800048828125,
+            "width": 105.60009765625,
+            "height": 33.60003662109375
         }
     },
     "m_Slots": [
@@ -1960,8 +1994,8 @@
     "m_ObjectId": "49c669053b4342c1b413d207d7684826",
     "m_Title": "Determine draw width ",
     "m_Position": {
-        "x": -783.0,
-        "y": 605.0
+        "x": -783.2000732421875,
+        "y": 608.7999877929688
     }
 }
 
@@ -2702,6 +2736,82 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.FractionNode",
+    "m_ObjectId": "6b3174aca6a14a1aa1d80d093c7502bf",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Fraction",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -2642.39990234375,
+            "y": 439.1999816894531,
+            "width": 208.0,
+            "height": 277.5999450683594
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "c6a870659d28469ab6e9dbb20e797c38"
+        },
+        {
+            "m_Id": "76e0a4d3f920476680662ec0dafde454"
+        }
+    ],
+    "synonyms": [
+        "remainder"
+    ],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.UVNode",
+    "m_ObjectId": "6f345cd61e3b47bea141454e0d20a9a8",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "UV",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -2900.7998046875,
+            "y": 440.79998779296877,
+            "width": 208.0,
+            "height": 310.39996337890627
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "d3d7f6eb508a4042b512de59b7f40837"
+        }
+    ],
+    "synonyms": [
+        "texcoords",
+        "coords",
+        "coordinates"
+    ],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_OutputChannel": 0
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "6f42d6f68e71a989b9342ffea1bee4d6",
     "m_Group": {
@@ -2844,6 +2954,30 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "76e0a4d3f920476680662ec0dafde454",
+    "m_Id": 1,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.MultiplyNode",
     "m_ObjectId": "76f867be51007e8cbdda055751ae4db6",
     "m_Group": {
@@ -2891,8 +3025,8 @@
     "m_ObjectId": "7c120d57209a43c7a5dadbed8921189e",
     "m_Title": "Creates rectangular offset UVs",
     "m_Position": {
-        "x": -1843.0,
-        "y": 261.0
+        "x": -1843.2001953125,
+        "y": 263.20001220703127
     }
 }
 
@@ -3862,8 +3996,8 @@
     "m_ObjectId": "bf5a4f02afc74371b1b3300f234d053c",
     "m_Title": "Generates random luminance map ",
     "m_Position": {
-        "x": -996.0000610351563,
-        "y": 119.00003051757813
+        "x": -996.0,
+        "y": 123.20001220703125
     }
 }
 
@@ -3929,6 +4063,30 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "c6a870659d28469ab6e9dbb20e797c38",
+    "m_Id": 0,
+    "m_DisplayName": "In",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "In",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
     }
 }
 
@@ -4180,8 +4338,8 @@
     "m_ObjectId": "d377da39b0034244ae6d10b871adcad3",
     "m_Title": "Determine draw height",
     "m_Position": {
-        "x": -778.0000610351563,
-        "y": 998.0000610351563
+        "x": -778.39990234375,
+        "y": 1002.39990234375
     }
 }
 
@@ -4207,6 +4365,31 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "d3d7f6eb508a4042b512de59b7f40837",
+    "m_Id": 0,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
 }
 
 {

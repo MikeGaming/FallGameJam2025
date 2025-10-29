@@ -13,15 +13,14 @@ public class GridController : MonoBehaviour
     [HideInInspector]
     public Vector2 position = Vector2.zero;
     public float cooldown = 1f;
+    public Color defaultCol;
     public UnityEvent<List<int>> result = new UnityEvent<List<int>>();
     public UnityEvent reset = new UnityEvent();
     float curCooldown = 0f;
-    Color defaultCol;
     RectTransform rectTransform;
 
     void Start()
     {
-        defaultCol = GetComponent<Image>().color;
         lineRenderer = GetComponent<UILineRenderer>();
         rectTransform = GetComponent<RectTransform>();
     }

@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 7
+  radius: 17
 --- !u!1 &2391330807136729440
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 8
+  radius: 17
 --- !u!1 &4146770958148728933
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 3
+  radius: 17
 --- !u!1 &5368204313313701811
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 5
+  radius: 17
 --- !u!1 &6161368693255376600
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 6
+  radius: 17
 --- !u!1 &6246888399447179632
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 1
+  radius: 17
 --- !u!1 &6354369611226003163
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
+  radius: 17
 --- !u!1 &6979866664536822398
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,6 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 2
+  radius: 17
 --- !u!1 &7193408268024558519
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,6 +820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
   cooldown: 1
+  defaultCol: {r: 0.81960785, g: 0.81960785, b: 0.81960785, a: 1}
   result:
     m_PersistentCalls:
       m_Calls: []
@@ -920,3 +929,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 4
+  radius: 17

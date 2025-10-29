@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Puzzle : MonoBehaviour
@@ -6,10 +7,6 @@ public class Puzzle : MonoBehaviour
     enum PuzzleType { Enemy, Pattern }
 
     [SerializeField] PuzzleType puzzleType;
-
-    enum WinEffect { SpawnPlatform, DeleteObstacle}
-
-    [SerializeField] WinEffect winEffect;
 
     [SerializeField] GameObject platformToSpawn, obstacleToDelete;
 
@@ -71,29 +68,27 @@ public class Puzzle : MonoBehaviour
     void Update()
     {
         if (puzzleCompleted) return;
-        switch (puzzleType)
+
+        if (enemiesToDefeat.Length > 0)
         {
-            case PuzzleType.Enemy:
-                bool allDefeated = true;
-                foreach (var enemy in enemiesToDefeat)
+            bool allDefeated = true;
+            foreach (var enemy in enemiesToDefeat)
+            {
+                if (enemy != null)
                 {
-                    if (enemy != null)
-                    {
-                        allDefeated = false;
-                        break;
-                    }
+                    allDefeated = false;
+                    break;
                 }
-                if (allDefeated)
-                {
-                    CompletePuzzle();
-                }
-                break;
-            case PuzzleType.Pattern:
-                if (PatternTilesMatchDestroyedState())
-                {
-                    CompletePuzzle();
-                }
-                break;
+            }
+            if (allDefeated)
+            {
+                CompletePuzzle();
+            }
+        }
+        
+        if (PatternTilesMatchDestroyedState())
+        {
+           CompletePuzzle();
         }
     }
 
@@ -141,20 +136,14 @@ public class Puzzle : MonoBehaviour
     void CompletePuzzle()
     {
         puzzleCompleted = true;
-        switch (winEffect)
+        
+        if (platformToSpawn != null)
         {
-            case WinEffect.SpawnPlatform:
-                if (platformToSpawn != null)
-                {
-                    platformToSpawn.SetActive(true);
-                }
-                break;
-            case WinEffect.DeleteObstacle:
-                if (obstacleToDelete != null)
-                {
-                    Destroy(obstacleToDelete);
-                }
-                break;
+            platformToSpawn.SetActive(true);
+        }
+        if (obstacleToDelete != null)
+        {
+            Destroy(obstacleToDelete);
         }
     }
 }
